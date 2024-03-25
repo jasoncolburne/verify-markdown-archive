@@ -84,6 +84,9 @@ with keri.app.habbing.openHab(name='temp', temp=True) as (hby, hab):
         if f.endswith('.ceg') and os.path.isfile(os.path.join(archive_directory, f))
     ]
 
+    if not ceg_paths:
+        print("No .ceg files found!")
+
     for ceg_path in ceg_paths:
         with open(ceg_path, 'rb') as ceg_file:
             messages = ceg_file.read()
@@ -96,6 +99,9 @@ with keri.app.habbing.openHab(name='temp', temp=True) as (hby, hab):
         if f.endswith('.acdc') and os.path.isfile(os.path.join(archive_directory, f))
     ]
 
+    if not expanded_acdc_paths:
+        print("No .acdc files found!")
+
     for acdc_path in expanded_acdc_paths:
         with open(acdc_path, 'r') as acdc_file:
             acdc_json = json.loads(acdc_file.read())
@@ -106,6 +112,22 @@ with keri.app.habbing.openHab(name='temp', temp=True) as (hby, hab):
 
             markdown = acdc_json['a']['markdown']['values']
             assets = acdc_json['a']['assets']['values']
+
+            markdown_filenames = [
+                f
+                for f in os.listdir(archive_directory)
+                if f.endswith('.md') and os.path.isfile(os.path.join(archive_directory, f))
+            ]
+
+            for filename in markdown_filenames:
+                if filename not in markdown:
+                    print(f'{os.path.join(archive_directory, filename)} cannot be verified.')
+
+            asset_filenames = [f for f in os.listdir(os.path.join(archive_directory, 'assets'))]
+
+            for filename in asset_filenames:
+                if filename not in assets:
+                    print(f'{os.path.join(archive_directory, filename)} cannot be verified.')
 
             for markdown_path, markdown_details in markdown.items():
                 path = os.path.join(archive_directory, markdown_path)
