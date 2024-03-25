@@ -23,3 +23,9 @@ For an example archive, check out [tbd]().
 make deps
 ./verify.py <path-to-acdc-markdown-archive>
 ```
+
+and you should receive the output:
+
+```
+No further output indicates success!
+```
