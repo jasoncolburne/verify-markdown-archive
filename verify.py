@@ -11,6 +11,7 @@ import keri.core.coring
 import keri.vdr.credentialing
 import keri.vdr.verifying
 
+
 archive_directory = sys.argv[1].removesuffix('/')
 
 def compact(expanded_json):
@@ -57,6 +58,11 @@ def compact(expanded_json):
     return saider.qb64
 
 with keri.app.habbing.openHab(name='temp', temp=True) as (hby, hab):
+    import keri.help
+    import logging
+
+    keri.help.ogler.resetLevel(level=logging.WARN)
+
     rgy = keri.vdr.credentialing.Regery(hby=hby, name='temp', base='', temp=True)
     vry = keri.vdr.verifying.Verifier(hby=hby, reger=rgy.reger)
     hby.psr.vry = vry
@@ -91,7 +97,8 @@ with keri.app.habbing.openHab(name='temp', temp=True) as (hby, hab):
         with open(ceg_path, 'rb') as ceg_file:
             messages = ceg_file.read()
             hby.psr.parse(bytearray(messages))
-            ceg_acdc_saids.add(ceg_path.split('/')[-1].split('.')[0])
+            ceg_acdc_said = ceg_path.split('/')[-1].split('.')[0]
+            ceg_acdc_saids.add(ceg_acdc_said)
 
     expanded_acdc_paths = [
         os.path.join(archive_directory, f)

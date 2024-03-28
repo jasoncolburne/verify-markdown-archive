@@ -20,8 +20,7 @@ After sodium is installed, make dependencies and you should be able to run the s
 For an example archive, check out [tbd]().
 
 ```sh
-make deps
-./verify.py <path-to-acdc-markdown-archive>
+make verify archive=<path-to-acdc-markdown-archive>
 ```
 
 and you should receive the output:

@@ -10,7 +10,7 @@ hjson==3.1.0
 http_sfv==0.9.9
 jsonschema==4.21.1
 jsonschema-specifications==2023.12.1
-keri==1.1.8
+keri @ git+https://github.com/WebOfTrust/keripy@11e051cdfcbaa2f83db04d2161933e9dd97ba573
 lmdb==1.4.1
 mnemonic==0.21
 msgpack==1.0.8
