@@ -46,6 +46,7 @@ def compact(expanded_json):
     expanded_json['a'] = saider.qb64
 
     expanded_json['r']['liabilityDisclaimer'] = expanded_json['r']['liabilityDisclaimer']['d']
+    expanded_json['r']['license'] = expanded_json['r']['license']['d']
     expanded_json['r']['verificationInstructions'] = expanded_json['r']['verificationInstructions']['d']
     
     rules = expanded_json['r']
