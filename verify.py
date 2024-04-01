@@ -25,6 +25,10 @@ def compact(expanded_json):
             print(f'Invalid SAID {qb64} found for {filename} details.')
         markdown[filename] = qb64
 
+    license = expanded_json['a']['license']
+    saider = keri.core.coring.Saider(sad=license)
+    expanded_json['a']['license'] = saider.qb64
+
     markdown = expanded_json['a']['markdown']
     saider = keri.core.coring.Saider(sad=markdown)
     expanded_json['a']['markdown'] = saider.qb64
